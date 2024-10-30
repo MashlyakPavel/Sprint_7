@@ -7,6 +7,10 @@ import com.google.gson.JsonParser;
 import io.qameta.allure.Step;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
+
+import java.util.HashMap;
+import java.util.Map;
+
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsNot.not;
@@ -31,7 +35,11 @@ public class CourierHelper {
     }
 
     public String createRequestBody(String login, String password, String firstName) {
-        return "{ \"login\": \"" + login + "\", \"password\": \"" + password + "\", \"firstName\": \"" + firstName + "\" }";
+        Map<String, String> courierMap = new HashMap<>();
+        courierMap.put("login", login);
+        courierMap.put("password", password);
+        courierMap.put("firstName", firstName);
+        return gson.toJson(courierMap);
     }
 
     @Step("create courier")
@@ -45,7 +53,7 @@ public class CourierHelper {
 
     public int authorizeCourier(String login, String password) {
         int courierId = getCourierId(login, password);
-        assertThat(courierId, is(not(-1))); // Убедитесь, что ID корректен
+        assertThat(courierId, is(not(-1)));
         return courierId;
     }
 

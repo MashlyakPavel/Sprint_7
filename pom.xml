@@ -29,13 +29,6 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- Зависимость Selenium -->
-        <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-java</artifactId>
-            <version>4.24.0</version>
-        </dependency>
-
         <!-- Зависимость Gson для работы с JSON -->
         <dependency>
             <groupId>com.google.code.gson</groupId>

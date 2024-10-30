@@ -1,4 +1,4 @@
-package CourierTest;
+package couriertest;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import io.qameta.allure.*;

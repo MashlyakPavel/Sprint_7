@@ -1,15 +1,4 @@
-/*Логин курьера
-Проверь:
-- курьер может авторизоваться;
-- для авторизации нужно передать все обязательные поля;
-- система вернёт ошибку, если неправильно указать логин или пароль;
-- если какого-то поля нет, запрос возвращает ошибку;
-- если авторизоваться под несуществующим пользователем, запрос возвращает ошибку;
-- успешный запрос возвращает id
-- все данные нужно удалять после того, как тест выполнится.
-*/
-
-package LoginCourierTest;
+package logincouriertest;
 import CourierTest.CourierHelper;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -56,7 +45,10 @@ public class LoginCourierTest {
         // Данные для создания курьера
         String login = "infin";
         String password = "1111";
-        String body = "{ \"login\": \"" + login + "\", \"password\": \"" + password + "\", \"firstName\": \"pavel\" }";
+        Map<String, String> body = new HashMap<>();
+        body.put("login", login);
+        body.put("password", password);
+        body.put("firstName", "pavel");
         Response createResponse = RestAssured.given()
                 .header("Content-Type", "application/json")
                 .body(body)
@@ -84,7 +76,10 @@ public class LoginCourierTest {
     public void testWithWrongLoginOrPasswordCourier() {
         String login = "infin";
         String password = "1111";
-        String body = "{ \"login\": \"" + login + "\", \"password\": \"" + password + "\", \"firstName\": \"pavel\" }";
+        Map<String, String> body = new HashMap<>();
+        body.put("login", login);
+        body.put("password", password);
+        body.put("firstName", "pavel");
         Response createResponse = RestAssured.given()
                 .header("Content-Type", "application/json")
                 .body(body)
@@ -137,7 +132,10 @@ public class LoginCourierTest {
     public void testMissingRequiredFieldsCourier() {
         String login = "infin";
         String password = "1111";
-        String body = "{ \"login\": \"" + login + "\", \"password\": \"" + password + "\", \"firstName\": \"pavel\" }";
+        Map<String, String> body = new HashMap<>();
+        body.put("login", login);
+        body.put("password", password);
+        body.put("firstName", "pavel");
         Response createResponse = RestAssured.given()
                 .header("Content-Type", "application/json")
                 .body(body)
@@ -191,7 +189,10 @@ public class LoginCourierTest {
     @DisplayName("Login non-existent user returns error")
     @Step("Test login for non-existent courier")
     public void testLoginNonExistentUser() {
-        String bodyNonExistentUser = "{ \"login\": \"skdsmv\", \"password\": \"41341\" }";
+        Map<String, String> bodyNonExistentUser = new HashMap<>();
+        bodyNonExistentUser.put("login", "qfdafasf");
+        bodyNonExistentUser.put("password", "4313112");
+        bodyNonExistentUser.put("firstName", "pavel");
         Response response = RestAssured.given()
                 .header("Content-Type", "application/json")
                 .body(bodyNonExistentUser)

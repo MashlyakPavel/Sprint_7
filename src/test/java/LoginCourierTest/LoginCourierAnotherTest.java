@@ -1,4 +1,4 @@
-package LoginCourierTest;
+package logincouriertest;
 import CourierTest.CourierHelper;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -36,7 +36,10 @@ public class LoginCourierAnotherTest {
     public void testMissingRequiredLoginCourier() {
         String login = "infin";
         String password = "1111";
-        String body = "{ \"login\": \"" + login + "\", \"password\": \"" + password + "\", \"firstName\": \"pavel\" }";
+        Map<String, String> body = new HashMap<>();
+        body.put("login", login);
+        body.put("password", password);
+        body.put("firstName", "pavel");
         Response createResponse = RestAssured.given()
                 .header("Content-Type", "application/json")
                 .body(body)
@@ -81,7 +84,10 @@ public class LoginCourierAnotherTest {
     public void testMissingRequiredPasswordCourier() {
         String login = "infin";
         String password = "1111";
-        String body = "{ \"login\": \"" + login + "\", \"password\": \"" + password + "\", \"firstName\": \"pavel\" }";
+        Map<String, String> body = new HashMap<>();
+        body.put("login", login);
+        body.put("password", password);
+        body.put("firstName", "pavel");
         Response createResponse = RestAssured.given()
                 .header("Content-Type", "application/json")
                 .body(body)

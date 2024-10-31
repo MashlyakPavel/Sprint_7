@@ -40,7 +40,10 @@ public class CourierTest {
     public void testCreateCourierIsPossible() {
         String login = "infin";
         String password = "1111";
-        String body = "{ \"login\": \"" + login + "\", \"password\": \"" + password + "\", \"firstName\": \"pavel\" }";
+        Map<String, String> body = new HashMap<>();
+        body.put("login", login);
+        body.put("password", password);
+        body.put("firstName", "pavel");
         Response response = RestAssured.given()
                 .header("Content-Type", "application/json")
                 .body(body)
@@ -59,7 +62,10 @@ public class CourierTest {
     public void testErrorCreateTheSameCourier() {
         String login = "infin";
         String password = "1111";
-        String body = "{ \"login\": \"" + login + "\", \"password\": \"" + password + "\", \"firstName\": \"pavel\" }";
+        Map<String, String> body = new HashMap<>();
+        body.put("login", login);
+        body.put("password", password);
+        body.put("firstName", "pavel");
         Response firstResponse = RestAssured.given()
                 .header("Content-Type", "application/json")
                 .body(body)
@@ -88,7 +94,10 @@ public class CourierTest {
     public void testCreateCourierWithAllRequiredFields() {
         String login = "infin";
         String password = "1111";
-        String body = "{ \"login\": \"" + login + "\", \"password\": \"" + password + "\", \"firstName\": \"pavel\" }";
+        Map<String, String> body = new HashMap<>();
+        body.put("login", login);
+        body.put("password", password);
+        body.put("firstName", "pavel");
         Response response = RestAssured.given()
                 .header("Content-Type", "application/json")
                 .body(body)
@@ -109,7 +118,10 @@ public class CourierTest {
     public void testCreateCourierCode201() {
         String login = "infin"; // Логин
         String password = "1111"; // Пароль
-        String body = "{ \"login\": \"" + login + "\", \"password\": \"" + password + "\", \"firstName\": \"pavel\" }";
+        Map<String, String> body = new HashMap<>();
+        body.put("login", login);
+        body.put("password", password);
+        body.put("firstName", "pavel");
         Response response = RestAssured.given()
                 .header("Content-Type", "application/json")
                 .body(body)
@@ -128,7 +140,10 @@ public class CourierTest {
     public void testCreateCourierOkTrue() {
         String login = "infin";
         String password = "1111";
-        String body = "{ \"login\": \"" + login + "\", \"password\": \"" + password + "\", \"firstName\": \"pavel\" }";
+        Map<String, String> body = new HashMap<>();
+        body.put("login", login);
+        body.put("password", password);
+        body.put("firstName", "pavel");
         Response response = RestAssured.given()
                 .header("Content-Type", "application/json")
                 .body(body)
@@ -146,7 +161,9 @@ public class CourierTest {
     @Severity(SeverityLevel.CRITICAL)
     @Description("Verify that creating a courier without a login returns an error")
     public void testCreateCourierWithoutLogin() {
-        String bodyWithoutLogin = "{ \"password\": \"1111\", \"firstName\": \"pavel\" }";
+        Map<String, String> bodyWithoutLogin = new HashMap<>();
+        bodyWithoutLogin.put("password", "1111");
+        bodyWithoutLogin.put("firstName", "pavel");
         String expectedMessage = "Недостаточно данных для создания учетной записи";
 
         Response response = RestAssured.given()
@@ -166,7 +183,9 @@ public class CourierTest {
     @Description("Verify that creating a courier without a password returns an error")
     public void testCreateCourierWithoutPassword() {
         String login = "infin" + System.currentTimeMillis();
-        String bodyWithoutPassword = "{ \"login\": \"" + login + "\", \"firstName\": \"pavel\" }";
+        Map<String, String> bodyWithoutPassword = new HashMap<>();
+        bodyWithoutPassword.put("login", login);
+        bodyWithoutPassword.put("firstName", "pavel");
         String expectedMessage = "Недостаточно данных для создания учетной записи";
         Response response = RestAssured.given()
                 .header("Content-Type", "application/json")
@@ -185,11 +204,13 @@ public class CourierTest {
     @Description("Verify that creating a courier without a first name returns an error")
     public void testCreateCourierWithoutFirstName() {
         String login = "infin" + System.currentTimeMillis();
-        String bodyWithoutFirstName = "{ \"login\": \"" + login + "\", \"password\": \"1111\" }";
+        Map<String, String> requestBody = new HashMap<>();
+        requestBody.put("login", login);
+        requestBody.put("password", "1111");
         String expectedMessage = "Недостаточно данных для создания учетной записи";
         Response response = RestAssured.given()
                 .header("Content-Type", "application/json")
-                .body(bodyWithoutFirstName)
+                .body(requestBody)
                 .when()
                 .post("/api/v1/courier");
         courierHelper.printResponse(response, gson);

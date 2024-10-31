@@ -1,4 +1,4 @@
-package CreateOrderTest;
+package createordertest;
 import io.qameta.allure.Step;
 import io.qameta.allure.internal.shadowed.jackson.databind.ObjectMapper;
 import io.qameta.allure.internal.shadowed.jackson.databind.SerializationFeature;

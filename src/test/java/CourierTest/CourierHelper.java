@@ -1,5 +1,5 @@
 
-package CourierTest;
+package couriertest;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
@@ -58,9 +58,14 @@ public class CourierHelper {
     }
 
     public int getCourierId(String login, String password) {
+        Gson gson = new Gson();
+        Map<String, String> body = new HashMap<>();
+        body.put("login", login);
+        body.put("password", password);
+        String jsonBody = gson.toJson(body);
         Response response = RestAssured.given()
-                .header("Content-Type", "application/json")
-                .body("{ \"login\": \"" + login + "\", \"password\": \"" + password + "\" }")
+                .header("Counter-Type", "application/json")
+                .body(jsonBody)
                 .when()
                 .post("/api/v1/courier/login");
 

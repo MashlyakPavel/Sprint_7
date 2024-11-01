@@ -1,5 +1,5 @@
 package logincouriertest;
-import CourierTest.CourierHelper;
+import couriertest.CourierHelper;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import io.qameta.allure.Epic;
@@ -21,7 +21,7 @@ public class LoginCourierAnotherTest {
 
     private Gson gson;
     private int courierId = -1;
-    private CourierTest.CourierHelper courierHelper = new CourierHelper();
+    private couriertest.CourierHelper courierHelper = new CourierHelper();
 
     @Before
     @Step("Set up test environment")

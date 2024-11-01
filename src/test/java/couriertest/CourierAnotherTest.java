@@ -1,6 +1,4 @@
 package couriertest;
-import CourierTest.CourierHelper;
-import CreateOrderTest.Specifications;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import io.qameta.allure.*;
